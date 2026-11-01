@@ -1,0 +1,47 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "eventpulse",
+  "main": "src/worker/index.ts",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat"],
+
+  "assets": {
+    "directory": "./dist/client",
+    "binding": "ASSETS",
+    "not_found_handling": "single-page-application"
+  },
+
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "eventpulse",
+      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID",
+      "migrations_dir": "migrations"
+    }
+  ],
+
+  "durable_objects": {
+    "bindings": [
+      {
+        "name": "EVENT_STATUS",
+        "class_name": "EventStatusDO"
+      }
+    ]
+  },
+
+  "migrations": [
+    {
+      "tag": "v1",
+      "new_classes": ["EventStatusDO"]
+    }
+  ],
+
+  "triggers": {
+    "crons": ["*/15 * * * *"]
+  },
+
+  "vars": {
+    "EVENTS_API_NAME": "demo",
+    "APP_BASE_URL": "http://localhost:8787"
+  }
+}

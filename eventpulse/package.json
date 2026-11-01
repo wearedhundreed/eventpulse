@@ -1,0 +1,36 @@
+{
+  "name": "eventpulse",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "dev:worker": "wrangler dev",
+    "build": "vite build",
+    "deploy": "npm run build && wrangler deploy",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "db:create": "wrangler d1 create eventpulse",
+    "db:migrate:local": "wrangler d1 migrations apply eventpulse --local",
+    "db:migrate:prod": "wrangler d1 migrations apply eventpulse --remote",
+    "db:seed:local": "wrangler d1 execute eventpulse --local --file=migrations/0002_seed.sql",
+    "db:seed:prod": "wrangler d1 execute eventpulse --remote --file=migrations/0002_seed.sql"
+  },
+  "dependencies": {
+    "hono": "^4.6.14",
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.28.0"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20241127.0",
+    "@types/react": "^18.3.12",
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react": "^4.3.4",
+    "typescript": "^5.7.2",
+    "vite": "^5.4.11",
+    "vitest": "^2.1.8",
+    "wrangler": "^3.94.0"
+  }
+}
