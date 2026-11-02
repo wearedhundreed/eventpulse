@@ -13,11 +13,13 @@ import ordersRoutes from "./routes/orders";
 import ticketsRoutes from "./routes/tickets";
 import organizerRoutes from "./routes/organizer";
 import liveRoutes from "./routes/live";
+import chatRoutes from "./routes/chat";
 import { syncEvents } from "./providers/sync";
 import { expireReservations } from "./db/queries";
 
-// ── Export the Durable Object class ──────────────────────────────
+// ── Export the Durable Object classes ─────────────────────────────
 export { EventStatusDO } from "./do/EventStatusDO";
+export { ChatRoomDO } from "./do/ChatRoomDO";
 
 // ── Hono API app ─────────────────────────────────────────────────
 const api = new Hono<{ Bindings: Env }>();
@@ -35,6 +37,7 @@ api.route("/api/orders", ordersRoutes);
 api.route("/api/tickets", ticketsRoutes);
 api.route("/api/organizer", organizerRoutes);
 api.route("/api/live", liveRoutes);
+api.route("/api/chat", chatRoutes);
 
 // Health check
 api.get("/api/health", rateLimit(10), (c) =>

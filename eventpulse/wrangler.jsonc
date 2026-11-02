@@ -2,46 +2,49 @@
   "$schema": "node_modules/wrangler/config-schema.json",
   "name": "eventpulse",
   "main": "src/worker/index.ts",
-  "compatibility_date": "2026-11-01",
+  "compatibility_date": "2025-07-18",
   "compatibility_flags": ["nodejs_compat"],
-
   "assets": {
     "directory": "./dist/client",
     "binding": "ASSETS",
     "not_found_handling": "single-page-application"
   },
-
   "d1_databases": [
     {
       "binding": "DB",
       "database_name": "eventpulse",
-      "database_id": "REPLACE_WITH_YOUR_D1_DATABASE_ID",
+      "database_id": "a28a55aa-5375-4009-a242-42ef7979d1ec",
       "migrations_dir": "migrations"
     }
   ],
-
   "durable_objects": {
     "bindings": [
       {
         "name": "EVENT_STATUS",
         "class_name": "EventStatusDO"
+      },
+      {
+        "name": "CHAT_ROOM",
+        "class_name": "ChatRoomDO"
       }
     ]
   },
-
   "migrations": [
     {
       "tag": "v1",
-      "new_classes": ["EventStatusDO"]
+      "new_sqlite_classes": ["EventStatusDO"]
+    },
+    {
+      "tag": "v2",
+      "new_sqlite_classes": ["ChatRoomDO"]
     }
   ],
-
   "triggers": {
     "crons": ["*/15 * * * *"]
   },
-
+  "routes": [{"pattern": "eventpulse.dhundreedcom.com", "custom_domain": true}],
   "vars": {
     "EVENTS_API_NAME": "demo",
-    "APP_BASE_URL": "http://localhost:8787"
+    "APP_BASE_URL": "https://eventpulse.dhundreedcom.com"
   }
 }

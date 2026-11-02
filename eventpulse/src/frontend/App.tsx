@@ -1,6 +1,7 @@
 import { Routes, Route } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { Navbar, Footer } from "./components/Navbar";
+import { ChatWidget } from "./components/ChatWidget";
 import { useCart } from "./hooks/useCart";
 import Discover from "./pages/Discover";
 import HappeningNow from "./pages/HappeningNow";
@@ -30,6 +31,7 @@ export default function App() {
         </Routes>
       </main>
       <Footer />
+      <ChatWidget />
     </div>
   );
 }

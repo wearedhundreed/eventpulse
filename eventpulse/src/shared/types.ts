@@ -173,6 +173,7 @@ export interface Env {
   DB: D1Database;
   ASSETS: Fetcher;
   EVENT_STATUS: DurableObjectNamespace;
+  CHAT_ROOM: DurableObjectNamespace;
   STRIPE_SECRET_KEY: string;
   STRIPE_WEBHOOK_SECRET: string;
   EVENTS_API_BASE_URL: string;

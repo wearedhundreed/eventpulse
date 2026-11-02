@@ -157,6 +157,18 @@ export const api = {
     });
   },
 
+  // ── Chat ──────────────────────────────────────────────────────
+  getChatMessages(): Promise<{ messages: any[] }> {
+    return apiFetch("/api/chat/messages");
+  },
+
+  sendChatMessage(message: string, sender: string): Promise<any> {
+    return apiFetch("/api/chat/send", {
+      method: "POST",
+      body: JSON.stringify({ message, sender }),
+    });
+  },
+
   // ── Health ────────────────────────────────────────────────────
   health(): Promise<any> {
     return apiFetch("/api/health");
